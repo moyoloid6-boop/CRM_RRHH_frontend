@@ -1,0 +1,332 @@
+---
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => {
+    if (path === "/" && currentPath === "/") return true;
+    if (
+        path !== "/" &&
+        currentPath.toLowerCase().startsWith(path.toLowerCase())
+    )
+        return true;
+    return false;
+};
+---
+
+<aside
+    class="w-64 lg:w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-screen shrink-0 select-none"
+>
+    <!-- Encabezado / Logo -->
+    <div
+        class="px-5 py-4 flex items-center gap-3.5 border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md"
+    >
+        <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-sky-400 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 ring-1 ring-white/20 shrink-0"
+        >
+            <img src="src\assets\logo.png" alt="moyolo" class="w-2/3" />
+        </div>
+        <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-2">
+                <span
+                    class="text-base font-bold text-white tracking-tight truncate"
+                    >Moyolo</span
+                >
+                <span
+                    class="px-1.5 py-0.5 text-[10px] font-semibold bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 rounded-md"
+                    >RRHH</span
+                >
+            </div>
+            <span class="text-xs text-slate-400 font-medium truncate"
+                >Control & Gestión</span
+            >
+        </div>
+    </div>
+
+    <!-- Menú Principal -->
+    <nav
+        class="flex-1 overflow-y-auto px-3.5 py-4 space-y-6 [scrollbar-width:thin] [scrollbar-color:#334155_transparent]"
+    >
+        <!-- Bloque 1: General -->
+        <div>
+            <div class="px-3 mb-2">
+                <span
+                    class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"
+                    >General</span
+                >
+            </div>
+            <ul class="space-y-1">
+                <li>
+                    <a
+                        href="/Dachboard"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/Dachboard")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-layout-right-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/Dachboard")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Dashboard</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bloque 2: Control de Personal -->
+        <div>
+            <div class="px-3 mb-2">
+                <span
+                    class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"
+                    >Personal</span
+                >
+            </div>
+            <ul class="space-y-1">
+                <li>
+                    <a
+                        href="/colaboradores"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/colaboradores")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-user-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/colaboradores")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Colaboradores</span>
+                        </div>
+                        <span
+                            class="px-2 py-0.5 text-xs font-semibold rounded-full bg-slate-800 text-slate-300 border border-slate-700/60 group-hover:bg-slate-700/60 transition-colors"
+                        >
+                            34
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/contratos"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/contratos")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-file-user-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/contratos")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Contratos & Venc.</span>
+                        </div>
+                        <span
+                            class="px-2 py-0.5 text-xs font-semibold rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1.5"
+                            title="3 contratos por vencer"
+                        >
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"
+                            ></span>
+                            3
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/expedientes"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/expedientes")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-folder-user-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/expedientes")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Documentos / Legajos</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bloque 3: Operaciones Diarias -->
+        <div>
+            <div class="px-3 mb-2">
+                <span
+                    class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"
+                    >Operaciones</span
+                >
+            </div>
+            <ul class="space-y-1">
+                <li>
+                    <a
+                        href="/asistencia"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/asistencia")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-calendar-check-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/asistencia")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Asistencia & Tardanzas</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/permisos"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/permisos")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-flight-takeoff-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/permisos")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Vacaciones & Permisos</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/boletas"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/boletas")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-receipt-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/boletas")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Boletas de Pago</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bloque 4: Seguridad & Cumplimiento -->
+        <div>
+            <div class="px-3 mb-2">
+                <span
+                    class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"
+                    >Cumplimiento</span
+                >
+            </div>
+            <ul class="space-y-1">
+                <li>
+                    <a
+                        href="/sst"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/sst")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-shield-check-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/sst")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>SST (EMO)</span>
+                        </div>
+                        <span
+                            class="px-2 py-0.5 text-xs font-semibold rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30 flex items-center gap-1.5"
+                        >
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"
+                            ></span>
+                            1
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/configuracion"
+                        class={`group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                            isActive("/configuracion")
+                                ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 border border-transparent"
+                        }`}
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                class={`ri-settings-3-line text-lg transition-transform duration-200 group-hover:scale-110 ${
+                                    isActive("/configuracion")
+                                        ? "text-indigo-400"
+                                        : "text-slate-400 group-hover:text-slate-200"
+                                }`}></i>
+                            <span>Configuración</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Pie de Usuario -->
+    <div class="p-3 border-t border-slate-800/80 bg-slate-900/60">
+        <div
+            class="flex items-center justify-between p-2 rounded-xl bg-slate-800/40 hover:bg-slate-800/70 border border-slate-800/60 transition-colors duration-150"
+        >
+            <div class="flex items-center gap-3 min-w-0">
+                <div class="relative shrink-0">
+                    <div
+                        class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-indigo-500/20 ring-1 ring-white/20"
+                    >
+                        AD
+                    </div>
+                    <span
+                        class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 border-2 border-slate-900 rounded-full"
+                    ></span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                    <span class="text-sm font-semibold text-slate-200 truncate"
+                        >Administrador</span
+                    >
+                    <span class="text-xs text-slate-400 truncate"
+                        >RRHH & Operaciones</span
+                    >
+                </div>
+            </div>
+            <button
+                class="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0 cursor-pointer"
+                title="Cerrar sesión"
+                type="button"
+            >
+                <i class="ri-logout-box-r-line text-lg"></i>
+            </button>
+        </div>
+    </div>
+</aside>
